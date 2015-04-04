@@ -13,20 +13,15 @@ using System.Linq;
 
 namespace Aulos.Infrastructure.Repositories
 {
-    public class AlbumFileRepository : IAlbumFileRepository
+    public class AlbumFileRepository : IAlbumRepository
     {
         private IFileProvider _fileProvider;
         private IAlbumDtoMapper _albumFileMapper;
 
-        public AlbumFileRepository(IFileProvider fileProvider, IAlbumDtoMapper albumFromFileMapper)
+        public AlbumFileRepository(IFileProvider fileProvider, IAlbumDtoMapper albumMapper)
         {
             _fileProvider = fileProvider;
-            _albumFileMapper = albumFromFileMapper;
-        }
-
-        public Album Get(string id)
-        {
-            throw new NotImplementedException();
+            _albumFileMapper = albumMapper;
         }
 
         public Album GetByPath(string sourcePath)
@@ -36,14 +31,20 @@ namespace Aulos.Infrastructure.Repositories
             return albumDto != null ? _albumFileMapper.Map(albumDto) : null;
         }
 
-        public void Save(Album aggregate)
+        public void Save(Album album)
         {
-            var albumJson = (AlbumJsonDto)_albumFileMapper.MapToJson(aggregate);
-            var albumString = JsonConvert.SerializeObject(albumJson);
-            File.WriteAllText(aggregate.Artist.Name + " - " + aggregate.Title + ".txt", albumString);
+            var albumJson = (AlbumJsonDto)_albumFileMapper.MapToJson(album);
+            var albumString = JsonConvert.SerializeObject(albumJson, Formatting.Indented);
+            File.WriteAllText(album.Artist.Name + " - " + album.Title + ".txt", albumString);
         }
 
         public void Delete(Album aggregate)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public Album Get(int id)
         {
             throw new NotImplementedException();
         }

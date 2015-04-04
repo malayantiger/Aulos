@@ -55,7 +55,7 @@
             Log.Info("Registering custom types");
             var serviceLocator = ServiceLocator.Default;
             serviceLocator.RegisterType<IFileProvider, TagLibFileProvider>();
-            serviceLocator.RegisterType<IAlbumFileRepository, AlbumFileRepository>();
+            serviceLocator.RegisterType<IAlbumRepository, AlbumFileRepository>();
 
             serviceLocator.RegisterType<IAlbumFactory, AlbumFactory>();
             serviceLocator.RegisterType<IArtistFactory, ArtistFactory>();

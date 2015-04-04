@@ -8,6 +8,8 @@ namespace Aulos.Core.Domain.Entities
 {
     public class Track : IEntity
     {
+        public int TracklistPosition { get; set; }
         public string Title { get; set; }
+        public TimeSpan Duration { get; set; }
     }
 }

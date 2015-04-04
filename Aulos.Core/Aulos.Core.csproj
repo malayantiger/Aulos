@@ -42,15 +42,16 @@
     <Compile Include="Data\IAlbumDto.cs" />
     <Compile Include="Data\ITrackDto.cs" />
     <Compile Include="Domain\Entities\IAggregate.cs" />
+    <Compile Include="Domain\Entities\IEntity.cs" />
     <Compile Include="Domain\Factories\AlbumFactory.cs" />
     <Compile Include="Domain\Factories\ArtistFactory.cs" />
     <Compile Include="Domain\Factories\IAlbumFactory.cs" />
     <Compile Include="Domain\Factories\IArtistFactory.cs" />
     <Compile Include="Domain\Factories\IFactory.cs" />
+    <Compile Include="Domain\Repositories\IRepository.cs" />
     <Compile Include="Infrastructure\Services\IFileProvider.cs" />
     <Compile Include="Data\IDataTransferObject.cs" />
     <Compile Include="Domain\Entities\Album.cs" />
-    <Compile Include="Domain\Entities\IEntity.cs" />
     <Compile Include="Domain\Entities\Artist.cs" />
     <Compile Include="Domain\Entities\Track.cs" />
     <Compile Include="Mappers\AlbumJsonDto.cs" />
@@ -58,9 +59,7 @@
     <Compile Include="Mappers\IMap.cs" />
     <Compile Include="Mappers\ITrackDtoMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Domain\Repositories\IAlbumFileRepository.cs" />
     <Compile Include="Domain\Repositories\IAlbumRepository.cs" />
-    <Compile Include="Domain\Repositories\IRepository.cs" />
     <Compile Include="Application\Services\IAlbumLoader.cs" />
   </ItemGroup>
   <ItemGroup>

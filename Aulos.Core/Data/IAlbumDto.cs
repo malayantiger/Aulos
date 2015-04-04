@@ -6,7 +6,11 @@ namespace Aulos.Core.Data
     {
         string ArtistName { get; set; }
         string Title { get; set; }
-        IEnumerable<ITrackDto> Tracklist { get; set; }
+        int ReleaseYear { get; set; }
+        string Genre { get; set; }
+        string Duration { get; set; }
         string SourcePath { get; set; }
+
+        IEnumerable<ITrackDto> Tracklist { get; set; }    
     }
 }

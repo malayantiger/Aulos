@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace Aulos.Core.Domain.Repositories
 {
-    public interface IAlbumRepository<in TKey> : IRepository<Album, TKey>
+    public interface IAlbumRepository
     {
-        
+        Album GetByPath(string sourcePath);
+        Album Get(int id);
+        void Save(Album album);
+        void Delete(Album album);
     }
 }

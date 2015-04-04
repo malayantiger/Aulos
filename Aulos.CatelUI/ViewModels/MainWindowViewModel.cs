@@ -85,6 +85,10 @@
                 {
                     ArtistName = album.Artist.Name,
                     Title = album.Title,
+                    ReleaseYear = album.ReleaseDate.Year,
+                    Genre = album.Genre,
+                    TotalTracksCount = album.TotalTracksCount,
+                    Duration = album.Duration.ToString(@"hh\:mm\:ss"),
                     SourcePath = album.SourcePath
                 };
 
@@ -108,8 +112,11 @@
             {
                 Artist = new Artist { Name = Albums[0].ArtistName },
                 Title = Albums[0].Title,
-                SourcePath = Albums[0].SourcePath
+                Genre = Albums[0].Genre,
+                SourcePath = Albums[0].SourcePath,
             };
+
+            album.AddReleaseDate(Albums[0].ReleaseYear);
 
             foreach (var track in Albums[0].Tracklist)
             {

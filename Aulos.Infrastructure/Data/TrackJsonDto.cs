@@ -10,7 +10,13 @@ namespace Aulos.Infrastructure.Data
 {
     public class TrackJsonDto : ITrackDto
     {
+        [JsonProperty(PropertyName = "track")]
+        public int TracklistPosition { get; set; }
+
         [JsonProperty(PropertyName = "title")]
         public string Title { get; set; }
+
+        [JsonProperty(PropertyName = "duration")]
+        public string Duration { get; set; }
     }
 }

@@ -21,17 +21,19 @@ namespace Aulos.Infrastructure.Mappers
 
         public Album Map(IAlbumDto dto)
         {
-            var entity = _albumFactory.Create();
-            entity.Artist = new Artist() { Name = dto.ArtistName };
-            entity.Title = dto.Title;
-            entity.SourcePath = dto.SourcePath;
+            var album = _albumFactory.Create();
+            album.Artist = new Artist() { Name = dto.ArtistName };
+            album.Title = dto.Title;
+            album.Genre = dto.Genre;
+            album.AddReleaseDate(dto.ReleaseYear);
+            album.SourcePath = dto.SourcePath;
 
             foreach (var track in dto.Tracklist)
             {
-                entity.AddTrack(_trackFileMapper.Map(track));
+                album.AddTrack(_trackFileMapper.Map(track));
             }
 
-            return entity;
+            return album;
         }
 
         public IAlbumDto MapToJson(Album album)
@@ -40,6 +42,10 @@ namespace Aulos.Infrastructure.Mappers
             { 
                 ArtistName = album.Artist.Name,
                 Title = album.Title,
+                ReleaseYear = album.ReleaseDate.Year,
+                Genre = album.Genre,
+                TotalTracksCount = album.TotalTracksCount,
+                Duration = album.Duration.ToString(@"hh\:mm\:ss"),
                 SourcePath = album.SourcePath
             };
 

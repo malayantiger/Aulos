@@ -11,8 +11,12 @@ namespace Aulos.CatelUI.ViewModels
     {
         public string ArtistName { get; set; }
         public string Title { get; set; }
-        public List<TrackViewModel> Tracklist { get; set; }
+        public int ReleaseYear { get; set; }
+        public string Genre { get; set; }
+        public int TotalTracksCount { get; set; }
+        public string Duration { get; set; }
         public string SourcePath { get; set; }
+        public List<TrackViewModel> Tracklist { get; set; }
 
         public AlbumViewModel()
         {

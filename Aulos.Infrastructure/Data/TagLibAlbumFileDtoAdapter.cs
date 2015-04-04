@@ -36,6 +36,29 @@ namespace Aulos.Infrastructure.Data
         }
 
         public IEnumerable<ITrackDto> Tracklist { get; set; }
+
+        private int _releaseYear;
+        public int ReleaseYear
+        {
+            get
+            {
+                if (_releaseYear == 0) 
+                    _releaseYear = (int)_albumMetaData.Year;
+
+                return _releaseYear;
+            }
+            set { _releaseYear = value; }
+        }
+
+        private string _genre;
+        public string Genre
+        {
+            get { return _genre ?? (_genre = _albumMetaData.FirstGenre); }
+            set { _genre = value; }
+        }
+
+        public string Duration { get; set; }
+
         public string SourcePath { get; set; }
 
     }

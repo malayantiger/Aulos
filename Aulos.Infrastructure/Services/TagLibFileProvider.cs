@@ -43,7 +43,7 @@ namespace Aulos.Infrastructure.Services
         {
             using (var file = TagLib.File.Create(filePath))
             {
-                return _trackFileDtoFactory.Create(file.Tag);
+                return _trackFileDtoFactory.Create(file.Tag, file.Properties);
             }
         }
 

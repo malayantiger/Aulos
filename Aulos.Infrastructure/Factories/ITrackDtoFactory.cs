@@ -9,6 +9,6 @@ namespace Aulos.Infrastructure.Factories
 {
     public interface ITrackDtoFactory
     {
-        ITrackDto Create(TagLib.Tag trackMetadata);
+        ITrackDto Create(TagLib.Tag trackMetadata, TagLib.Properties trackProperties);
     }
 }

@@ -2,6 +2,7 @@
 using Aulos.Core.Domain.Entities;
 using Aulos.Core.Mappers;
 using Aulos.Infrastructure.Data;
+using System;
 
 namespace Aulos.Infrastructure.Mappers
 {
@@ -11,7 +12,9 @@ namespace Aulos.Infrastructure.Mappers
         {
             var entity = new Track()
             {
-                Title = dto.Title
+                TracklistPosition = dto.TracklistPosition,
+                Title = dto.Title,
+                Duration = TimeSpan.Parse(dto.Duration)
             };
 
             return entity;
@@ -21,7 +24,9 @@ namespace Aulos.Infrastructure.Mappers
         {
             var trackJson = new TrackJsonDto
             {
-                Title = track.Title
+                TracklistPosition = track.TracklistPosition,
+                Title = track.Title,
+                Duration = track.Duration.ToString(@"hh\:mm\:ss")
             };
 
             return trackJson;

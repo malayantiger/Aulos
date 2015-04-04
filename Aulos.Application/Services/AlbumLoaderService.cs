@@ -11,9 +11,9 @@ namespace Aulos.Application.Services
 {
     public class AlbumLoaderService : IAlbumLoaderService
     {
-        private IAlbumFileRepository _albumFileRepository;
+        private IAlbumRepository _albumFileRepository;
 
-        public AlbumLoaderService(IAlbumFileRepository albumFileRepository)
+        public AlbumLoaderService(IAlbumRepository albumFileRepository)
         {
             _albumFileRepository = albumFileRepository;
         }

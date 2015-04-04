@@ -10,6 +10,10 @@
     <StackPanel>
         <TextBox Text="{Binding ArtistName}" />
         <TextBox Text="{Binding Title}" />
-        <TextBox Text="{Binding SourcePath}" />
+        <TextBox Text="{Binding ReleaseYear}" />
+        <TextBox Text="{Binding Genre}" />
+        <TextBox IsReadOnly="True" Text="{Binding TotalTracksCount}" />
+        <TextBox IsReadOnly="True" Text="{Binding Duration}" />
+        <TextBox IsReadOnly="True" Text="{Binding SourcePath}" />   
     </StackPanel>
 </UserControl>

@@ -10,9 +10,9 @@ namespace Aulos.Infrastructure.Factories
 {
     public class TrackDtoFactory : ITrackDtoFactory
     {
-        public ITrackDto Create(TagLib.Tag trackMetadata)
+        public ITrackDto Create(TagLib.Tag trackMetadata, TagLib.Properties trackProperties)
         {
-            return new TagLibTrackFileDtoAdapter(trackMetadata);
+            return new TagLibTrackFileDtoAdapter(trackMetadata, trackProperties);
         }
     }
 }
