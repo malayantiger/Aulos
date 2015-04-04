@@ -8,23 +8,26 @@
     using Catel.IoC;
     using Catel.MVVM;
     using Catel.Services;
-    using Ookii.Dialogs.Wpf;
     using System;
     using System.Collections.ObjectModel;
     using System.Threading.Tasks;
 
     public class MainWindowViewModel : ViewModelBase
     {
-        private IAlbumLoaderService _albumLoaderService;
-        private INavigationService _navigationService;
+        private readonly IAlbumLoaderService _albumLoaderService;
+        private readonly INavigationService _navigationService;
+        private readonly IMessageService _messageService;
+        private readonly ISelectDirectoryService _selectDirectoryService;
 
-        public MainWindowViewModel(IAlbumLoaderService albumLoaderService, INavigationService navigationService)
+        public MainWindowViewModel(IAlbumLoaderService albumLoaderService, INavigationService navigationService, IMessageService messageService, ISelectDirectoryService selectDirectoryService)
         {
             _albumLoaderService = albumLoaderService;
             _navigationService = navigationService;
+            _messageService = messageService;
+            _selectDirectoryService = selectDirectoryService;
 
             LoadAlbumCommand = new Command(OnLoadAlbumCommandExecute);
-            SaveAlbumCommand = new Command(OnSaveAlbumCommandExecute);
+            SaveAlbumAsyncCommand = new TaskCommand(OnSaveAlbumAsyncCommandExecute);
             CloseApplicationCommand = new Command(OnCloseApplicationCommandExecute);
         }
 
@@ -64,7 +67,7 @@
         public static readonly PropertyData SelectedAlbumProperty = RegisterProperty("SelectedAlbum", typeof(AlbumViewModel), null, (sender, e) => ((MainWindowViewModel)sender).OnSelectedAlbumChanged());
 
         public Command LoadAlbumCommand { get; private set; }
-        public Command SaveAlbumCommand { get; private set; }
+        public TaskCommand SaveAlbumAsyncCommand { get; private set; }
         public Command CloseApplicationCommand { get; private set; }
 
         private void OnLoadAlbumCommandExecute()
@@ -74,12 +77,9 @@
                 Albums = new ObservableCollection<AlbumViewModel>();
             }
 
-            var openDialog = new VistaFolderBrowserDialog();
-            openDialog.RootFolder = Environment.SpecialFolder.DesktopDirectory;
-
-            if (openDialog.ShowDialog() == true)
+            if (_selectDirectoryService.DetermineDirectory())
             {
-                var path = openDialog.SelectedPath;
+                var path = _selectDirectoryService.DirectoryName;
                 var album = _albumLoaderService.Load(path);
                 var albumViewModel = album.MapToViewModel();
                 Albums.Add(albumViewModel);
@@ -91,10 +91,24 @@
             }
         }
 
-        public void OnSaveAlbumCommandExecute()
+        public async Task OnSaveAlbumAsyncCommandExecute()
         {
             var album = SelectedAlbum.MapToEntity();
-            _albumLoaderService.Save(album);
+            Exception exception = null;
+
+            try
+            {
+                _albumLoaderService.Save(album);
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+            }
+
+            if (exception != null)
+                await _messageService.ShowError(exception.Message);
+            else
+                await _messageService.Show("Album saved!");
         }
 
         private void OnSelectedAlbumChanged()

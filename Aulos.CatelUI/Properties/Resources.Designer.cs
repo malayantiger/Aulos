@@ -61,6 +61,78 @@ namespace Aulos.CatelUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Album.
+        /// </summary>
+        public static string AlbumViewAlbumLabel {
+            get {
+                return ResourceManager.GetString("AlbumViewAlbumLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Artist.
+        /// </summary>
+        public static string AlbumViewArtistLabel {
+            get {
+                return ResourceManager.GetString("AlbumViewArtistLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duration.
+        /// </summary>
+        public static string AlbumViewDurationLabel {
+            get {
+                return ResourceManager.GetString("AlbumViewDurationLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Genre.
+        /// </summary>
+        public static string AlbumViewGenreLabel {
+            get {
+                return ResourceManager.GetString("AlbumViewGenreLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Year.
+        /// </summary>
+        public static string AlbumViewReleaseYearLabel {
+            get {
+                return ResourceManager.GetString("AlbumViewReleaseYearLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Source Path.
+        /// </summary>
+        public static string AlbumViewSourcePathLabel {
+            get {
+                return ResourceManager.GetString("AlbumViewSourcePathLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        public static string AlbumViewTitleLabel {
+            get {
+                return ResourceManager.GetString("AlbumViewTitleLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tracks.
+        /// </summary>
+        public static string AlbumViewTotalTracksCountLabel {
+            get {
+                return ResourceManager.GetString("AlbumViewTotalTracksCountLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exit.
         /// </summary>
         public static string CommandBarViewFileExitHeader {

@@ -34,7 +34,14 @@ namespace Aulos.Infrastructure.Repositories
             //var albumJson = album.MapToJson();
             //var albumString = JsonConvert.SerializeObject(albumJson, Formatting.Indented);
             //File.WriteAllText(album.Artist.Name + " - " + album.Title + ".txt", albumString);
-            _fileProvider.SaveAlbum(album.MapToTrackFiles());
+            try
+            {
+                _fileProvider.SaveAlbum(album.MapToTrackFiles());
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(String.Format("Album could not be saved: {0}", ex.Message), ex);
+            }
         }
 
         public void Delete(Album aggregate)

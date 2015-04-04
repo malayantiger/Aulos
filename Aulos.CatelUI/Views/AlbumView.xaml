@@ -5,15 +5,43 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:Views="clr-namespace:Aulos.CatelUI.Views"
              xmlns:catel="http://catel.codeplex.com"
+             xmlns:mahapps="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:p="clr-namespace:Aulos.CatelUI.Properties"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <StackPanel>
-        <TextBox Text="{Binding ArtistName}" />
-        <TextBox Text="{Binding Title}" />
-        <TextBox Text="{Binding ReleaseYear}" />
-        <TextBox Text="{Binding Genre}" />
-        <TextBox IsReadOnly="True" Text="{Binding TotalTracksCount}" />
-        <TextBox IsReadOnly="True" Text="{Binding Duration}" />
-        <TextBox Text="{Binding SourcePath}" />   
+    <StackPanel Margin="10">
+        <Label Content="{Binding Source={x:Static p:Resources.AlbumViewAlbumLabel}}"
+               FontSize="16"/>
+        <Grid Margin="0,5,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="85" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" Content="{Binding Source={x:Static p:Resources.AlbumViewArtistLabel}}" />
+            <Label Grid.Column="0" Grid.Row="1" Content="{Binding Source={x:Static p:Resources.AlbumViewTitleLabel}}" />
+            <Label Grid.Column="0" Grid.Row="2" Content="{Binding Source={x:Static p:Resources.AlbumViewReleaseYearLabel}}" />
+            <Label Grid.Column="0" Grid.Row="3" Content="{Binding Source={x:Static p:Resources.AlbumViewGenreLabel}}" />
+            <Label Grid.Column="0" Grid.Row="4" Content="{Binding Source={x:Static p:Resources.AlbumViewTotalTracksCountLabel}}" />
+            <Label Grid.Column="0" Grid.Row="5" Content="{Binding Source={x:Static p:Resources.AlbumViewDurationLabel}}" />
+            <Label Grid.Column="0" Grid.Row="6" Content="{Binding Source={x:Static p:Resources.AlbumViewSourcePathLabel}}" />
+            <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding ArtistName}" />
+            <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Title}" />
+            <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding ReleaseYear}" />
+            <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Genre}" />
+            <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding TotalTracksCount}"
+                                                  IsReadOnly="True" />
+            <TextBox Grid.Column="1" Grid.Row="5" Text="{Binding Duration}"
+                                                  IsReadOnly="True" />
+            <TextBox Grid.Column="1" Grid.Row="6" Text="{Binding SourcePath}" />   
+        </Grid>
     </StackPanel>
 </UserControl>

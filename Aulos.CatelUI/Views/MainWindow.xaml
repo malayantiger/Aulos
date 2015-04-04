@@ -6,19 +6,24 @@
               xmlns:p="clr-namespace:Aulos.CatelUI.Properties"
               xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
               xmlns:Views="clr-namespace:Aulos.CatelUI.Views"
-              Title="{Binding Source={x:Static p:Resources.ShellViewWindowTitle}}" Width="640" Height="480"
-              ResizeMode="CanResize">
+              Title="{Binding Source={x:Static p:Resources.ShellViewWindowTitle}}" Width="400" Height="380"
+              ResizeMode="CanResize"
+              BorderBrush="{DynamicResource AccentColorBrush}"
+              BorderThickness="1"
+              WindowStartupLocation="CenterScreen">
 
     <StackPanel>
         <DockPanel LastChildFill="False">
-            <!--<ContentControl x:Name="CommandBar"
-                            DockPanel.Dock="Top" />-->
             <ContentControl DockPanel.Dock="Top">
                 <Views:CommandBarView />
             </ContentControl>
         </DockPanel>
-        <Views:AlbumView Grid.Row="1" DataContext="{Binding SelectedAlbum}" />
-        <Button Command="{Binding SaveAlbumCommand}" 
-                Content="Save" />
+        <Views:AlbumView DataContext="{Binding SelectedAlbum}" />
+        <DockPanel Margin="10,5,10,10">
+            <Button Command="{Binding SaveAlbumAsyncCommand}" 
+                    Content="Save"
+                    Width="100"
+                    HorizontalAlignment="Right"/>
+        </DockPanel>
     </StackPanel>
 </mahapps:MetroWindow>
