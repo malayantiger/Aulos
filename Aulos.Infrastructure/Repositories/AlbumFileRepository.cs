@@ -1,9 +1,9 @@
 ﻿using Aulos.Core.Domain.Entities;
 using Aulos.Core.Domain.Repositories;
 using Aulos.Core.Infrastructure.Services;
-using Aulos.Core.Mappers;
 using Aulos.Infrastructure.Data;
 using Aulos.Infrastructure.Factories;
+using Aulos.Infrastructure.Mappers;
 using Aulos.Infrastructure.Services;
 using Newtonsoft.Json;
 using System;
@@ -16,24 +16,22 @@ namespace Aulos.Infrastructure.Repositories
     public class AlbumFileRepository : IAlbumRepository
     {
         private IFileProvider _fileProvider;
-        private IAlbumDtoMapper _albumFileMapper;
 
-        public AlbumFileRepository(IFileProvider fileProvider, IAlbumDtoMapper albumMapper)
+        public AlbumFileRepository(IFileProvider fileProvider)
         {
             _fileProvider = fileProvider;
-            _albumFileMapper = albumMapper;
         }
 
         public Album GetByPath(string sourcePath)
         {
             var albumDto = _fileProvider.GetAlbum(sourcePath);
 
-            return albumDto != null ? _albumFileMapper.Map(albumDto) : null;
+            return albumDto != null ? albumDto.MapToEntity() : null;
         }
 
         public void Save(Album album)
         {
-            var albumJson = (AlbumJsonDto)_albumFileMapper.MapToJson(album);
+            var albumJson = album.MapToJson();
             var albumString = JsonConvert.SerializeObject(albumJson, Formatting.Indented);
             File.WriteAllText(album.Artist.Name + " - " + album.Title + ".txt", albumString);
         }

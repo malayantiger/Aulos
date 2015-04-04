@@ -1,5 +1,6 @@
 ﻿namespace Aulos.CatelUI.ViewModels
 {
+    using Aulos.CatelUI.Mappers;
     using Aulos.Core.Application.Services;
     using Aulos.Core.Domain.Entities;
     using Catel.Collections;
@@ -80,23 +81,7 @@
             {
                 var path = openDialog.SelectedPath;
                 var album = _albumLoaderService.Load(path);
-
-                var albumViewModel = new AlbumViewModel()
-                {
-                    ArtistName = album.Artist.Name,
-                    Title = album.Title,
-                    ReleaseYear = album.ReleaseDate.Year,
-                    Genre = album.Genre,
-                    TotalTracksCount = album.TotalTracksCount,
-                    Duration = album.Duration.ToString(@"hh\:mm\:ss"),
-                    SourcePath = album.SourcePath
-                };
-
-                foreach (var track in album.Tracklist)
-                {
-                    albumViewModel.Tracklist.Add(new TrackViewModel { Title = track.Title });
-                }
-
+                var albumViewModel = album.MapToViewModel();
                 Albums.Add(albumViewModel);
 
                 if (Albums.Count > 0)
@@ -108,21 +93,7 @@
 
         public void OnSaveAlbumCommandExecute()
         {
-            var album = new Album
-            {
-                Artist = new Artist { Name = Albums[0].ArtistName },
-                Title = Albums[0].Title,
-                Genre = Albums[0].Genre,
-                SourcePath = Albums[0].SourcePath,
-            };
-
-            album.AddReleaseDate(Albums[0].ReleaseYear);
-
-            foreach (var track in Albums[0].Tracklist)
-            {
-                album.AddTrack(new Track { Title = track.Title });
-            }
-
+            var album = SelectedAlbum.MapToEntity();
             _albumLoaderService.Save(album);
         }
 

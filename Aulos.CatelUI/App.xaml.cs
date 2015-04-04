@@ -15,7 +15,6 @@
     using Aulos.Infrastructure.Repositories;
     using Aulos.Core.Domain.Repositories;
     using Aulos.Core.Domain.Factories;
-    using Aulos.Core.Mappers;
     using Aulos.Infrastructure.Factories;
     using Aulos.Infrastructure.Mappers;
 
@@ -60,8 +59,6 @@
             serviceLocator.RegisterType<IAlbumFactory, AlbumFactory>();
             serviceLocator.RegisterType<IArtistFactory, ArtistFactory>();
 
-            serviceLocator.RegisterType<IAlbumDtoMapper, AlbumDtoMapper>();
-            serviceLocator.RegisterType<ITrackDtoMapper, TrackDtoMapper>();
             serviceLocator.RegisterType<IAlbumFileDtoFactory, AlbumFileDtoFactory>();
             serviceLocator.RegisterType<ITrackDtoFactory, TrackDtoFactory>();
             serviceLocator.RegisterType<IAlbumLoaderService, AlbumLoaderService>();

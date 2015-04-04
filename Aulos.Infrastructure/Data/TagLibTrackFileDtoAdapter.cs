@@ -35,8 +35,8 @@ namespace Aulos.Infrastructure.Data
 
         private string _duration;
         public string Duration 
-        { 
-            get { return _duration ?? (_duration = _trackProperties.Duration.ToString()); }
+        {
+            get { return _duration ?? (_duration = _trackProperties.Duration.ToString(@"hh\:mm\:ss")); }
             set { _duration = value; } 
         }
 

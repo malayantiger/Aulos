@@ -54,17 +54,11 @@
     <Compile Include="Domain\Entities\Album.cs" />
     <Compile Include="Domain\Entities\Artist.cs" />
     <Compile Include="Domain\Entities\Track.cs" />
-    <Compile Include="Mappers\AlbumJsonDto.cs" />
-    <Compile Include="Mappers\IAlbumDtoMapper.cs" />
-    <Compile Include="Mappers\IMap.cs" />
-    <Compile Include="Mappers\ITrackDtoMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Domain\Repositories\IAlbumRepository.cs" />
     <Compile Include="Application\Services\IAlbumLoader.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Infrastructure\Factories\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

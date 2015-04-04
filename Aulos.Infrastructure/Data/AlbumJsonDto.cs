@@ -21,14 +21,14 @@ namespace Aulos.Infrastructure.Data
         [JsonProperty(PropertyName = "genre")]
         public string Genre { get; set; }
 
-        [JsonProperty(PropertyName = "path")]
-        public string SourcePath { get; set; }
-
-        [JsonProperty(PropertyName = "totalTracks")]
+        [JsonProperty(PropertyName = "tracks")]
         public int TotalTracksCount { get; set; }
 
         [JsonProperty(PropertyName = "duration")]
         public string Duration { get; set; }
+
+        [JsonProperty(PropertyName = "path")]
+        public string SourcePath { get; set; }
 
         [JsonProperty(PropertyName = "tracklist")]
         public IEnumerable<ITrackDto> Tracklist { get; set; }

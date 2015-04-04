@@ -7,6 +7,8 @@ namespace Aulos.CatelUI.ViewModels
 {
     public class TrackViewModel
     {
+        public int TracklistPosition { get; set; }
         public string Title { get; set; }
+        public string Duration { get; set; }
     }
 }

@@ -1,14 +1,13 @@
 ﻿using Aulos.Core.Data;
 using Aulos.Core.Domain.Entities;
-using Aulos.Core.Mappers;
 using Aulos.Infrastructure.Data;
 using System;
 
 namespace Aulos.Infrastructure.Mappers
 {
-    public class TrackDtoMapper : ITrackDtoMapper
+    public static class TrackDtoMapper
     {
-        public Track Map(ITrackDto dto)
+        public static Track MapToEntity(this ITrackDto dto)
         {
             var entity = new Track()
             {
@@ -20,7 +19,7 @@ namespace Aulos.Infrastructure.Mappers
             return entity;
         }
 
-        public ITrackDto MapToJson(Track track)
+        public static ITrackDto MapToJson(this Track track)
         {
             var trackJson = new TrackJsonDto
             {

@@ -1,42 +1,35 @@
 ﻿using Aulos.Core.Data;
 using Aulos.Core.Domain.Entities;
 using Aulos.Core.Domain.Factories;
-using Aulos.Core.Mappers;
 using Aulos.Infrastructure.Data;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Aulos.Infrastructure.Mappers
 {
-    public class AlbumDtoMapper : IAlbumDtoMapper
+    public static class AlbumDtoMapper
     {
-        private IAlbumFactory _albumFactory;
-        private ITrackDtoMapper _trackFileMapper;
-
-        public AlbumDtoMapper(IAlbumFactory albumFactory, ITrackDtoMapper trackFromFileMapper)
+        public static Album MapToEntity(this IAlbumDto dto)
         {
-            _albumFactory = albumFactory;
-            _trackFileMapper = trackFromFileMapper;
-        }
+            var album = new Album
+            {
+                Artist = new Artist { Name = dto.ArtistName },
+                Title = dto.Title,
+                Genre = dto.Genre,
+                SourcePath = dto.SourcePath
+            };
 
-        public Album Map(IAlbumDto dto)
-        {
-            var album = _albumFactory.Create();
-            album.Artist = new Artist() { Name = dto.ArtistName };
-            album.Title = dto.Title;
-            album.Genre = dto.Genre;
             album.AddReleaseDate(dto.ReleaseYear);
-            album.SourcePath = dto.SourcePath;
 
             foreach (var track in dto.Tracklist)
             {
-                album.AddTrack(_trackFileMapper.Map(track));
+                album.AddTrack(track.MapToEntity());
             }
 
             return album;
         }
 
-        public IAlbumDto MapToJson(Album album)
+        public static AlbumJsonDto MapToJson(this Album album)
         {
             var jsonDto = new AlbumJsonDto 
             { 
@@ -49,7 +42,7 @@ namespace Aulos.Infrastructure.Mappers
                 SourcePath = album.SourcePath
             };
 
-            jsonDto.Tracklist = album.Tracklist.Select(t => _trackFileMapper.MapToJson(t));
+            jsonDto.Tracklist = album.Tracklist.Select(t => t.MapToJson());
 
             return jsonDto;
         }
