@@ -59,8 +59,7 @@
             serviceLocator.RegisterType<IAlbumFactory, AlbumFactory>();
             serviceLocator.RegisterType<IArtistFactory, ArtistFactory>();
 
-            serviceLocator.RegisterType<IAlbumFileDtoFactory, AlbumFileDtoFactory>();
-            serviceLocator.RegisterType<ITrackDtoFactory, TrackDtoFactory>();
+            serviceLocator.RegisterType<ITrackFileFactory, TrackFileFactory>();
             serviceLocator.RegisterType<IAlbumLoaderService, AlbumLoaderService>();
 
             //StyleHelper.CreateStyleForwardersForDefaultStyles();

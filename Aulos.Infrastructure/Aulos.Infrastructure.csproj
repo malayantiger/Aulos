@@ -56,14 +56,12 @@
   <ItemGroup>
     <Compile Include="Data\AlbumJsonDto.cs" />
     <Compile Include="Data\TrackJsonDto.cs" />
+    <Compile Include="Services\TagLibTagEditor.cs" />
     <Compile Include="Services\TagLibFileProvider.cs" />
-    <Compile Include="Data\TagLibAlbumFileDtoAdapter.cs" />
     <Compile Include="Data\ArtistDto.cs" />
-    <Compile Include="Data\TagLibTrackFileDtoAdapter.cs" />
-    <Compile Include="Factories\AlbumFileDtoFactory.cs" />
-    <Compile Include="Factories\IAlbumFileDtoFactory.cs" />
-    <Compile Include="Factories\ITrackDtoFactory.cs" />
-    <Compile Include="Factories\TrackDtoFactory.cs" />
+    <Compile Include="Data\TagLibTrackFileAdapter.cs" />
+    <Compile Include="Factories\ITrackFileFactory.cs" />
+    <Compile Include="Factories\TrackFileFactory.cs" />
     <Compile Include="Mappers\AlbumDtoMapper.cs" />
     <Compile Include="Mappers\TrackDtoMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

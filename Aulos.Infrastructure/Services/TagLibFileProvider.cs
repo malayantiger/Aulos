@@ -1,4 +1,4 @@
-﻿using Aulos.Core.Data;
+﻿using Aulos.Core.Infrastructure.Data;
 using Aulos.Core.Infrastructure.Services;
 using Aulos.Infrastructure.Factories;
 using System;
@@ -12,42 +12,49 @@ namespace Aulos.Infrastructure.Services
 {
     public class TagLibFileProvider : IFileProvider
     {
-        private IAlbumFileDtoFactory _albumFileDtoFactory;
-        private ITrackDtoFactory _trackFileDtoFactory;
+        private ITrackFileFactory _trackFileDtoFactory;
 
-        public TagLibFileProvider(IAlbumFileDtoFactory albumFileDtoFactory, ITrackDtoFactory trackFileDtoFactory)
+        public TagLibFileProvider(ITrackFileFactory trackFileDtoFactory)
         {
-            _albumFileDtoFactory = albumFileDtoFactory;
             _trackFileDtoFactory = trackFileDtoFactory;
         }
 
-        public IAlbumDto GetAlbum(string albumPath)
+        public IEnumerable<ITrackFile> GetAlbum(string albumPath)
         {
             var tracklistFileNames = GetAlbumTracklistFileNames(albumPath);
-            var tracklistFileDto = new List<ITrackDto>();
-            var filePath = GetFilePath(albumPath, tracklistFileNames.FirstOrDefault());
+            var tracklistFileDto = new List<ITrackFile>();
 
             foreach (var fileName in tracklistFileNames)
             {
-                filePath = GetFilePath(albumPath, fileName);
+                var filePath = GetFilePath(albumPath, fileName);
                 tracklistFileDto.Add(GetTrack(filePath));
             }
 
-            using (var file = TagLib.File.Create(filePath))
-            {
-                return _albumFileDtoFactory.Create(file.Tag, tracklistFileDto, albumPath);
-            }
+            return tracklistFileDto;
         }
 
-        public ITrackDto GetTrack(string filePath)
+        public ITrackFile GetTrack(string filePath)
         {
             using (var file = TagLib.File.Create(filePath))
             {
-                return _trackFileDtoFactory.Create(file.Tag, file.Properties);
+                return _trackFileDtoFactory.Create(file.Tag, file.Properties, filePath);
             }
         }
 
-        private string[] GetAlbumTracklistFileNames(string sourcePath)
+        public void SaveAlbum(IEnumerable<ITrackFile> tracks)
+        {
+            foreach (var track in tracks)
+            {
+                using (var file = TagLib.File.Create(track.SourcePath))
+                {
+                    var tag = file.Tag.Edit(track);
+                    tag.CopyTo(file.Tag, true);
+                    file.Save();
+                }
+            }
+        }
+
+        private IList<string> GetAlbumTracklistFileNames(string sourcePath)
         {
             string[] tracksFileNames = Directory.EnumerateFiles(sourcePath, "*", SearchOption.AllDirectories)
                 .Where(s => s.EndsWith(".mp3", StringComparison.OrdinalIgnoreCase) || s.EndsWith(".flac", StringComparison.OrdinalIgnoreCase))

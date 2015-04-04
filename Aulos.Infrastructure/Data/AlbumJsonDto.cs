@@ -1,4 +1,4 @@
-﻿using Aulos.Core.Data;
+﻿using Aulos.Core.Infrastructure.Data;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Aulos.Infrastructure.Data
 {
-    public class AlbumJsonDto : IAlbumDto
+    public class AlbumJsonDto
     {
         [JsonProperty(PropertyName = "artist")]
         public string ArtistName { get; set; }
@@ -31,7 +31,7 @@ namespace Aulos.Infrastructure.Data
         public string SourcePath { get; set; }
 
         [JsonProperty(PropertyName = "tracklist")]
-        public IEnumerable<ITrackDto> Tracklist { get; set; }
+        public IEnumerable<TrackJsonDto> Tracklist { get; set; }
 
         public AlbumJsonDto()
         {

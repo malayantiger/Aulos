@@ -11,5 +11,6 @@ namespace Aulos.Core.Domain.Entities
         public int TracklistPosition { get; set; }
         public string Title { get; set; }
         public TimeSpan Duration { get; set; }
+        public string FileName { get; set; }
     }
 }

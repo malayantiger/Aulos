@@ -1,4 +1,4 @@
-﻿using Aulos.Core.Data;
+﻿using Aulos.Core.Infrastructure.Data;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Aulos.Infrastructure.Data
 {
-    public class TrackJsonDto : ITrackDto
+    public class TrackJsonDto
     {
         [JsonProperty(PropertyName = "track")]
         public int TracklistPosition { get; set; }

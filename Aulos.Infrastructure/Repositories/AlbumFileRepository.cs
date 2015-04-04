@@ -24,16 +24,17 @@ namespace Aulos.Infrastructure.Repositories
 
         public Album GetByPath(string sourcePath)
         {
-            var albumDto = _fileProvider.GetAlbum(sourcePath);
+            var albumTracksCollection = _fileProvider.GetAlbum(sourcePath);
 
-            return albumDto != null ? albumDto.MapToEntity() : null;
+            return albumTracksCollection != null ? albumTracksCollection.ToList().MapToEntity() : null;
         }
 
         public void Save(Album album)
         {
-            var albumJson = album.MapToJson();
-            var albumString = JsonConvert.SerializeObject(albumJson, Formatting.Indented);
-            File.WriteAllText(album.Artist.Name + " - " + album.Title + ".txt", albumString);
+            //var albumJson = album.MapToJson();
+            //var albumString = JsonConvert.SerializeObject(albumJson, Formatting.Indented);
+            //File.WriteAllText(album.Artist.Name + " - " + album.Title + ".txt", albumString);
+            _fileProvider.SaveAlbum(album.MapToTrackFiles());
         }
 
         public void Delete(Album aggregate)

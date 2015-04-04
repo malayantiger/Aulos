@@ -1,4 +1,4 @@
-﻿using Aulos.Core.Data;
+﻿using Aulos.Core.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,7 +10,8 @@ namespace Aulos.Core.Infrastructure.Services
 {
     public interface IFileProvider
     {
-        IAlbumDto GetAlbum(string albumPath);
-        ITrackDto GetTrack(string filePath);
+        IEnumerable<ITrackFile> GetAlbum(string albumPath);
+        ITrackFile GetTrack(string filePath);
+        void SaveAlbum(IEnumerable<ITrackFile> tracks);
     }
 }

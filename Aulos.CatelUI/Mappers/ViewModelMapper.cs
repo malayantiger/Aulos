@@ -1,5 +1,4 @@
 ﻿using Aulos.CatelUI.ViewModels;
-using Aulos.Core.Data;
 using Aulos.Core.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -58,7 +57,8 @@ namespace Aulos.CatelUI.Mappers
             {
                 TracklistPosition = trackViewModel.TracklistPosition,
                 Title = trackViewModel.Title,
-                Duration = TimeSpan.Parse(trackViewModel.Duration)
+                Duration = TimeSpan.Parse(trackViewModel.Duration),
+                FileName = trackViewModel.FileName
             };
 
             return track;
@@ -70,7 +70,8 @@ namespace Aulos.CatelUI.Mappers
             {
                 TracklistPosition = track.TracklistPosition,
                 Title = track.Title,
-                Duration = track.Duration.ToString(@"hh\:mm\:ss")
+                Duration = track.Duration.ToString(@"hh\:mm\:ss"),
+                FileName = track.FileName
             };
 
             return trackViewModel;
