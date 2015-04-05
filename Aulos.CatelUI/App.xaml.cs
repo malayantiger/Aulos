@@ -17,6 +17,7 @@
     using Aulos.Core.Domain.Factories;
     using Aulos.Infrastructure.Factories;
     using Aulos.Infrastructure.Mappers;
+    using Aulos.CatelUI.ViewModels;
 
     /// <summary>
     /// Interaction logic for App.xaml
@@ -61,6 +62,8 @@
 
             serviceLocator.RegisterType<ITrackFileFactory, TrackFileFactory>();
             serviceLocator.RegisterType<IAlbumLoaderService, AlbumLoaderService>();
+
+            serviceLocator.RegisterType<AlbumManagerViewModel, AlbumManagerViewModel>();
 
             //StyleHelper.CreateStyleForwardersForDefaultStyles();
 

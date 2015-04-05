@@ -7,6 +7,7 @@ using Catel.Windows;
 using MahApps.Metro.Controls;
 using System;
 using System.ComponentModel;
+using System.Windows;
 using System.Windows.Data;
 namespace Aulos.CatelUI.Views
 {
@@ -43,6 +44,7 @@ namespace Aulos.CatelUI.Views
             // Call manually the first time (for injected view models)
             OnViewModelChanged();
             SetBinding(TitleProperty, new Binding("Title"));
+            Style = (Style)FindResource(typeof(System.Windows.Window));
         }
 
         #region IDataWindow Members

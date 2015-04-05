@@ -15,7 +15,7 @@ namespace Aulos.CatelUI.Mappers
             var album = new Album
             {
                 Artist = new Artist { Name = albumViewModel.ArtistName },
-                Title = albumViewModel.Title,
+                Title = albumViewModel.AlbumTitle,
                 Genre = albumViewModel.Genre,
                 SourcePath = albumViewModel.SourcePath,
             };
@@ -35,7 +35,7 @@ namespace Aulos.CatelUI.Mappers
             var albumViewModel = new AlbumViewModel()
             {
                 ArtistName = album.Artist.Name,
-                Title = album.Title,
+                AlbumTitle = album.Title,
                 ReleaseYear = album.ReleaseDate.Year,
                 Genre = album.Genre,
                 TotalTracksCount = album.TotalTracksCount,
